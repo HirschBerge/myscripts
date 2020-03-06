@@ -1,0 +1,11 @@
+#!/bin/sh
+echo "This is what would happen:"
+while IFS= read -r old <&3 && IFS= read -r new <&4; do
+  echo mv -i -- "$old" "==>" "$new"
+done 3< OLD 4< NEW
+
+echo -e "Would you like to continue? \nIf No, hit ^C, continuing in 10 seconds"
+sleep 10
+while IFS= read -r old <&3 && IFS= read -r new <&4; do
+	mv -i -- "$old" "$new"
+done 3< OLD 4< NEW
