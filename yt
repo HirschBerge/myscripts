@@ -1,5 +1,5 @@
 #!/bin/env sh
-case "$(printf "mpv\\nyt-download\\nwget\\ncurl" | dmenu -i -p "Open link with:")" in
+case "$(printf "mpv\\nyt-download\\nwget\\ncurl" | dmenu -fn "MeslosLGS NF"-i -p "Open link with:")" in
 	"mpv") mpv --fs=yes $1 >/dev/null 2>&1 &;;
 	"yt-download") cd ~/Videos && youtube-dl --format "bestvideo+bestaudio[ext=m4a]/bestvideo+bestaudio/best" --merge-output-format mp4 $1 ; exa -1 | grep -v OLD | grep -v NEW| tee OLD && exa -1 ~/Music/Videos |grep -v OLD | grep -v NEW| sed 's/(.*)//g' | sed 's/\[.*\]//g' | awk -F'-' '{ print $1 $2 ".mp4"}' | sed 's/\ *\./\./g'| sed 's/  / /g' | sed 's/://g' |sed 's/?//g' | sed 's/\.mp4\.mp4/\.mp4/g'|tee NEW ; ~/.scripts/rename ; ~/.scripts/mp3convert ; rm ~/Music/Vidoes/OLD ~/Music/Videos/NEW ;;
 	"wget") wget $1;;

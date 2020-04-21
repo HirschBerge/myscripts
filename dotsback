@@ -1,0 +1,8 @@
+#!/bin/sh
+## Get current date ##
+sudo mount /mnt/U32
+_now=$(date '+%Y%d%m')
+## Appending a current date from a $_now to a filename stored in $_file ##
+directory="/mnt/U32/Backup/configs/$_now"
+mkdir $directory
+sudo pycp /home/hirschy/.zshrc /home/hirschy/.profile /home/hirschy/.scripts/ /home/hirschy/.config "$directory"
